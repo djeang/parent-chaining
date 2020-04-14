@@ -98,11 +98,11 @@ public class Head {
         this.__ = parent;
     }
 ```
-`Head` only has `Html` as parent so no need of *generics* here. In contrast, `TagNode` can have both a `TagName`or 
-`Html` as parent : we need help of generics to handle properly this case.
+`Head` only has `Html` as parent, so we don't need of *generics*. In contrast, `TagNode` can have both `TagName`or 
+`Html` as parent : we need generics to handle properly this case.
 
 ```Java
-public class TagNode<P> implements Node {
+public class TagNode<P> implements Node {  // P is the genreric type of the parent
 
     public final P __; // Parent for chaining
 
