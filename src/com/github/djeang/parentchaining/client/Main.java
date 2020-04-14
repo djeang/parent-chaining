@@ -29,7 +29,7 @@ public class Main {
                                 .td().text("Jill").__
                                 .td().text("Smith").__
                                 .td().text("50").__.__
-                            .child("tr")
+                            .tr()
                                 .td().text("Eve").__
                                 .td().text("Jackson").__
                                 .td().text("94").__.__.__.__.__
