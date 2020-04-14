@@ -7,4 +7,9 @@ public class TextNode implements Node {
     public TextNode(String text) {
         this.text = text;
     }
+
+    @Override
+    public String toString() {
+        return text;
+    }
 }

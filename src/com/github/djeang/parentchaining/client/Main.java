@@ -8,11 +8,10 @@ public class Main {
         Html html = new Html()
             .head()
                 .title("Title of my document")
-                .meta()
-                    .charset("UTF-8")
-                    .content("description", "Parent-Chaining illustrator")
-                    .content("keywords", "design pattern, chaining, tree structure, Java")
-                    .content("author", "Jerome Angibaud").__.__
+                .meta().charset("UTF-8").__
+                .meta().content("description", "Parent-Chaining illustrator").__
+                .meta().content("keywords", "design pattern, chaining, tree structure, Java").__
+                .meta().content("author", "Jerome Angibaud").__.__
             .body()
                 .text("This is a simple page for describing Parent-Chaining pattern.")
                 .div().attr("style", "bold")

@@ -1,13 +1,10 @@
 package com.github.djeang.parentchaining.api;
 
-import com.sun.xml.internal.rngom.ast.builder.Div;
-import javafx.scene.Parent;
-import org.w3c.dom.Attr;
-
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.function.Consumer;
 
 public class TagNode<P> implements Node {
 
@@ -40,6 +37,10 @@ public class TagNode<P> implements Node {
         return child;
     }
 
+    public TagNode<P> apply(Consumer<TagNode<?>> consumer) {
+        consumer.accept(this);
+        return this;
+    }
 
     public TagNode<P> text(String text) {
         this.children.add(new TextNode(text));
@@ -75,5 +76,21 @@ public class TagNode<P> implements Node {
         return child("td");
     }
 
-
+    @Override
+    public String toString() {
+        StringBuilder builder = new StringBuilder("<" + name);
+        for (Map.Entry<String, String> entry : attrs.entrySet()) {
+            builder.append(" " + entry.getKey() + "=\"" + entry.getValue() + '"');
+        }
+        if (children.isEmpty()) {
+            builder.append("/>");
+        } else {
+            builder.append(">");
+            for (Node child : children) {
+                builder.append(child);
+            }
+            builder.append("</" + name + ">");
+        }
+        return builder.toString();
+    }
 }

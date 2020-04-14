@@ -9,7 +9,7 @@ public class Head {
 
     private String title;
 
-    private final Metas metas = new Metas(this);
+    private final List<Meta> metas = new LinkedList<>();
 
     Head(Html parent) {
         this.__ = parent;
@@ -20,47 +20,33 @@ public class Head {
         return this;
     }
 
-    public Metas meta() {
-        return this.metas;
+    public Meta meta() {
+        Meta meta = new Meta(this);
+        this.metas.add(meta);
+        return meta;
     }
 
 
+    public static class Meta extends TagNode<Head> {
 
-    public static class Metas {
-
-        public final Head __;
-
-        private final List<Meta> items = new LinkedList<>();
-
-        private Metas(Head __) {
-            this.__ = __;
+        private Meta(Head parent) {
+            super(parent, "meta");
         }
 
-        public Metas charset(String charset) {
-            items.add(new Meta(charset, null, null));
-            return this;
+        public Meta charset(String charset) {
+            return (Meta) this.attr("charset", charset);
         }
 
-        public Metas content(String name, String content) {
-            items.add(new Meta(null, name, content));
-            return this;
+        public Meta content(String name, String content) {
+            return (Meta) this.attr("name", name).attr("content", content);
         }
+
     }
 
-
-    public static class Meta {
-
-        private final String charset;
-
-        private final String name;
-
-        private final String content;
-
-        Meta(String charset, String name, String content) {
-            this.charset = charset;
-            this.name = name;
-            this.content = content;
-        }
-
+    @Override
+    public String toString() {
+        StringBuilder metaBuilder = new StringBuilder();
+        metas.forEach(metaBuilder::append);
+        return String.format("<head><title>%s</title>%s</head>", title, metaBuilder);
     }
 }
