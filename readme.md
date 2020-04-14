@@ -52,7 +52,7 @@ Html html = new Html()
         .div()
             .text("This is the end of this page.").__.__;
 ```
-As you see, the point of this pattern is to write quite readable code while dealing with tree structure 
+As you see, the point of this pattern is to write quite readable code when dealing with tree structures 
 (which is very common in computer science). Here we were able to fulfill an entire HTML document in a single chained statement. 
 
 You probably noticed the `.__` termination that returns the parent of the current object. 
@@ -206,7 +206,7 @@ public class MainVariant {
                     .td().text(age);
     }
 }
-```
+``
 
 ## Conclusion
 
@@ -217,4 +217,7 @@ than Jaxb does.
 
 Also version 0.9 of [Jeka](https://dev.jeka) will rely heavily on this pattern to configure project builds.
 
-```
+
+<small>
+Icons made by <a href="https://www.flaticon.com/authors/eucalyp" title="Eucalyp">Eucalyp</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a>
+</small>
