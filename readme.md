@@ -58,7 +58,7 @@ As you see, the point of this pattern is to write quite readable code when deali
 You probably noticed `.__` termination returning the parent of the current object. 
 This is the clue of *Parent-Chaining* pattern. 
 
-Note that `_` is not a valid identifier in Java9+ anymore, so we chose `__`.
+Note that `_` (single underscore) is not a valid identifier in Java9+ anymore, so we chose `__` (double underscore).
 Of course, we can choose any other valid field or method identifier to return parent but, `__` is nice as it looks 
 like a language feature.
 
@@ -148,16 +148,15 @@ public class TagNode<P> implements Node {  // P is the genreric type of the pare
  
 ### Appending Children
 
-To let interface being navigable, modifier methods need to return accurate types : 
+To let interface being navigable, setter/adder methods must return accurate types : 
 * If a method sets or appends a leaf object (like a `String` or a `Date`) then ìt must return `this`. 
-* If a method adds a navigable node as `TagNode`, it must return child type with proper generic type.
+* If a method adds a navigable node as `TagNode`, it must return properly generified child type .
 
-To append children and attributes to nodes, method `TagNode#child(tagName)` creates a child instance, 
-adds it to its children then returns the child. 
-`child` method returns a `TagNode<TagNode<P>>`, `TagNote<T>` being the type of current object.
+For example, to append children, `TagNode#child(tagName)` creates a child instance, adds it to its children 
+then returns the child typed as `TagNode<TagNode<P>>`, `TagNote<T>` being the type of current object.
 
 ```
-public TagNode<TagNode<P>> child(String name) {
+    public TagNode<TagNode<P>> child(String name) {  // add a tag with the specified name to childreen
         TagNode<TagNode<P>> child = TagNode.ofParent(this, name);
         this.children.add(child);
         return child;
@@ -179,20 +178,26 @@ public TagNode<TagNode<P>> child(String name) {
    ...
 ```
 
-### Improve the Design
+### Improving Design
 
-You can use Java functional consumers to delegate part of the tree handling by methods. `TagLib` implements a 
-`apply(Consumer<TagNode>)` method for delegation.
+Creating an entire tree in a single statement is not always desirable. Fortunately, Java functional consumers 
+are a great solution to isolate parts of tree handling.
 
-```Java
-public TagNode<P> apply(Consumer<TagNode<?>> consumer) {
-    consumer.accept(this);
-    return this;
-}
+Let's see how we `TagNode#apply(Consumer<TagNode>)` solve this issue :
+
+```
+public class TagNode<P> implements Node {
+
+    ...
+    
+    // This method accepts the a TagNode consumer for delegation.
+    public TagNode<P> apply(Consumer<TagNode<?>> consumer) {
+        consumer.accept(this);
+        return this;
+    }
 ```
 
-This simple `apply` method let handling entire part of the tree in dedicated methods or implementing a visitor.
-
+Now we can delegate entire part of the tree handling to simple methods.
 
 ``` Java
 public class MainVariant {
@@ -232,7 +237,7 @@ public class MainVariant {
 
 ## Conclusion
 
-*Parent-Chaining* pattern is a solution to improve greatly code readability at a cost of very few extra coding / complexity.
+*Parent-Chaining* pattern is a solution to improve greatly code readability at a cost of very few extra coding/complexity.
 
 We can imagine XML handling solution based on this pattern to manipulate DOM in a cleaner way or generate better code 
 than Jaxb does.
