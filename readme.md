@@ -21,7 +21,7 @@ This repository hosts [source code](src/com/github/djeang/parentchaining) of bel
 For developers, the most familiar tree structure is probably the HTML DOM. So let's see how to create 
 a HTML DOM instance with an API based on *Parent-Chaining* pattern.
 
-```
+```Java
 Html html = new Html()
     .head()
         .title("Title of my document")
@@ -101,7 +101,7 @@ public class Head {
 `Head` only has `Html` as parent so no need of *generics* here. In contrast, `TagNode` can have both a `TagName`or 
 `Html` as parent : we need help of generics to handle properly this case.
 
-```
+```Java
 public class TagNode<P> implements Node {
 
     public final P __; // Parent for chaining
@@ -136,7 +136,7 @@ the child. To make code more readable, short-cuts has `div()`, `table()`, `tr()`
 Note that `child` method returns a `TagNode<TagNode<P>>` and not a `TagNote<T>` as it returns the generic type of the child,
 not of itself.
 
-```
+```Java
 public TagNode<TagNode<P>> child(String name) {
         TagNode<TagNode<P>> child = TagNode.ofParent(this, name);
         this.children.add(child);
@@ -162,7 +162,7 @@ public TagNode<TagNode<P>> child(String name) {
 You can use Java functional consumer to delegate par of the tree handling by a method. `TagLib` implements a 
 `apply(Consumer<TagNode)` method for delegation.
 
-```
+```Java
 public TagNode<P> apply(Consumer<TagNode<?>> consumer) {
     consumer.accept(this);
     return this;
