@@ -3,7 +3,8 @@
 ## Abstract
 
 [Method chaining pattern](https://martinfowler.com/dslCatalog/methodChaining.html) has been around in 
-for years in Java and others language. It is widely used to implements builder pattern or [fluent interface](https://martinfowler.com/bliki/FluentInterface.html)
+for years in Java and others language. It is widely used to implements [builder pattern](https://martinfowler.com/dslCatalog/constructionBuilder.html) 
+or [fluent interface](https://martinfowler.com/bliki/FluentInterface.html)
 but never, as far as I know, to instantiate or modify a complete tree structure.
 
 The issue is that the chain termination determines the instance on which the next modifier method will apply on.
