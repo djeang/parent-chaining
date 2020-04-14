@@ -10,9 +10,10 @@ The issue is that the chain termination determines the instance on which the nex
 Navigation methods would be necessary to go deeper or higher in the tree structure. 
 
 The purpose of this article is to introduce the *parent chaining* pattern that will complete the *method chaining* to 
-achieve tree instantiation/modification with *tree-looking-like* code. The examples shown here are implemented in Java 
-but should be appliable with any statically typed languages featuring generics. Source code of these exemples are hosted 
-in this repository.
+achieve tree instantiation/modification with *tree-looking-like* code. 
+
+The examples shown here are implemented in Java but it can apply to any statically typed languages featuring generics. 
+Source code of these exemples are hosted in this repository.
 
 ## Exemple
 
