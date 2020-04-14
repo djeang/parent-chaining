@@ -18,7 +18,7 @@ This repository hosts source code of below examples.
 
 ## Example
 
-Probably, the most popular tree structure for programers is the HTML DOM. So let's see how to manipulate 
+Probably, the most popular tree structure for programers is the HTML DOM. So let's see how to create 
 a HTML DOM instance with an API based on *Parent-Chaining* pattern.
 
 ```Java
