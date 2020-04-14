@@ -2,8 +2,8 @@
 
 ## Abstract
 
-[Method chaining pattern](https://martinfowler.com/dslCatalog/methodChaining.html) has been around in 
-for years in Java and others language. It is widely used to implements [builder pattern](https://martinfowler.com/dslCatalog/constructionBuilder.html) 
+[Method chaining](https://martinfowler.com/dslCatalog/methodChaining.html) pattern has been around in 
+for years in Java and others language. It is widely used to implement [builder](https://martinfowler.com/dslCatalog/constructionBuilder.html) 
 or [fluent interface](https://martinfowler.com/bliki/FluentInterface.html)
 but never, as far as I know, to instantiate or modify a complete tree structure.
 
