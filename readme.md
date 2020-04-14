@@ -1,4 +1,4 @@
-# Parent-chaining pattern
+# Parent-Chaining Pattern
 
 ## Abstract
 
