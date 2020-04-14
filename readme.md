@@ -207,4 +207,13 @@ public class MainVariant {
     }
 }
 
+## Conclusion
+
+*Parent-Chaining* pattern is a solution to impove greatly code readability at a cost of very few extra coding / complexity.
+
+We can imagine XML handling solution based on this pattern to manipulate DOM in a cleaner way or generate better code 
+than Jaxb does.
+
+Also version 0.9 of [Jeka](https://dev.jeka) will rely heavily on this pattern.
+
 ```
