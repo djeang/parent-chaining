@@ -19,7 +19,7 @@ Source code of these exemples are hosted in this repository.
 ## Exemple
 
 Probably, the most popular tree structure for programers is the HTML DOM. So let's see how it would like to manupulate 
-a HTML DOM instance with an API based using *parent chaining* pattern.
+a HTML DOM instance with an API based on *Parent-Chaining* pattern.
 
 ```
 Html html = new Html()
