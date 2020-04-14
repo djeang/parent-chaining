@@ -10,11 +10,11 @@ but never, as far as I know, to instantiate or modify a complete tree structure.
 The issue is that the chain termination determines the instance on which the next modifier method will apply on.
 For flat structures it is ok but for trees, navigation methods are necessary to go deeper or higher in the structure. 
 
-The purpose of this article is to introduce the *Parent-Chaining* pattern that will complete the *method chaining* to 
+The purpose of this article is to introduce the *Parent-Chaining* pattern that will complete *method chaining* to 
 achieve tree instantiation/modification with *tree-looking-like* code. 
 
-The examples shown here are implemented in Java but it can apply to any statically typed languages featuring generics. 
-Source code of these exemples are hosted in this repository.
+The examples shown here are implemented in Java, but it can apply to any statically typed languages featuring generics. 
+This repository hosts source code of below examples.
 
 ## Exemple
 
