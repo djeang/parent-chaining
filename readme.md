@@ -64,7 +64,7 @@ like a language feature.
 
 ## Implementation
 
-### Instantiating Root class
+### Instantiating Root Class
 
 Top element does not need mechanism to return parent, it instantiates its own children by passing 
 itself as reference.
