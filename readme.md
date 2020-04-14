@@ -206,7 +206,7 @@ public class MainVariant {
                     .td().text(age);
     }
 }
-```
+``
 
 ## Conclusion
 
@@ -218,6 +218,7 @@ than Jaxb does.
 Also version 0.9 of [Jeka](https://dev.jeka) will rely heavily on this pattern to configure project builds.
 
 
-<small>
-Icons made by <a href="https://www.flaticon.com/authors/eucalyp" title="Eucalyp">Eucalyp</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a>
-</small>
+
+
+
+> Icons made by <a href="https://www.flaticon.com/authors/eucalyp" title="Eucalyp">Eucalyp</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a>
