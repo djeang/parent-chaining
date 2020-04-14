@@ -16,7 +16,7 @@ achieve tree instantiation/modification with *tree-looking-like* code.
 The examples shown here are implemented in Java, but it can apply to any statically typed languages featuring generics. 
 This repository hosts source code of below examples.
 
-## Exemple
+## Example
 
 Probably, the most popular tree structure for programers is the HTML DOM. So let's see how it would like to manupulate 
 a HTML DOM instance with an API based on *Parent-Chaining* pattern.
