@@ -21,7 +21,7 @@ This repository hosts source code of below examples.
 Probably, the most popular tree structure for programers is the HTML DOM. So let's see how it would like to manupulate 
 a HTML DOM instance with an API based on *Parent-Chaining* pattern.
 
-```kotlin
+```Java
 Html html = new Html()
     .head()
         .title("Title of my document")
