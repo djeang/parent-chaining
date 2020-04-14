@@ -13,15 +13,15 @@ For flat structures it is ok but for trees, navigation methods are necessary to 
 The purpose of this article is to introduce the *Parent-Chaining* pattern. This pattern completes *method chaining* to 
 achieve tree instantiation/modification with *tree-looking-like* code. 
 
-The examples shown here are implemented in Java, but it can apply to any statically typed language featuring generics. 
-This repository hosts [source code](src/com/github/djeang/parentchaining) of below examples.
+The example shown here is implemented in Java, but it can apply to any statically typed language featuring generics. 
+Complete code is available [here](src/com/github/djeang/parentchaining).
 
 ## Example
 
 For developers, the most familiar tree structure is probably the HTML DOM. So let's see how to create 
 a HTML DOM instance with an API based on *Parent-Chaining* pattern.
 
-```Java
+```
 Html html = new Html()
     .head()
         .title("Title of my document")
@@ -53,16 +53,23 @@ Html html = new Html()
             .text("This is the end of this page.").__.__;
 ```
 As you see, the point of this pattern is to write quite readable code when dealing with tree structures 
-(which is very common in computer science). Here we were able to fulfill an entire HTML document in a single chained statement. 
+(which is very common in computer science). Here, we were able to fulfill an entire HTML document in a single chained statement. 
 
-You probably noticed the `.__` termination that returns the parent of the current object. 
-This is the clue of *Parent-Chaining* pattern.
+You probably noticed `.__` termination returning the parent of the current object. 
+This is the clue of *Parent-Chaining* pattern. 
+
+Note that `_` is not a valid identifier in Java9+ anymore, so we chose `__`.
+Of course, we can choose any other valid field or method identifier to return parent but, `__` is nice as it looks 
+like a language feature.
 
 ## Implementation
 
-Let's see now, how to implement it. Let's start by the top one : `Html` class.
+### Instantiating Root class
 
-```Java
+Top element does not need mechanism to return parent, it instantiates its own children by passing 
+itself as reference.
+
+```
 public class Html {
 
     private final Head head = new Head(this);
@@ -79,13 +86,19 @@ public class Html {
 
 }
 ```
-Top element does not need mechanism to return parent, it instantiates its own children by passing them 
-itself as reference.
+
+### Instantiating Child Classes
 
 For illustration purpose, `Head` and `Body` does not follow strictly the same design. `<head>` has its own type 
 enforcing a restricted set of child tags (<title> or <meta>), while `<body>` and its children use a generic `TagNode` type.
  
-```Java
+The parent must be set once for all at instantiation time to benefit from `final` modifier. 
+ 
+##### Child Classes Having a Unique Parent Type
+
+`Head` parent is always `Html` so we can declare the parent with a non-generic type as shown below.
+ 
+```
 public class Head {
 
     public final Html __;  // For parent chaining
@@ -98,10 +111,15 @@ public class Head {
         this.__ = parent;
     }
 ```
-`Head` only has `Html` as parent, so we don't need of *generics*. In contrast, `TagNode` can have both `TagName`or 
-`Html` as parent : we need generics to handle properly this case.
 
-```Java
+##### Child Classes Having Multiple Parent Types
+
+In contrast, `TagNode` can have both `TagName`or `Html` as parent : we need generics to handle properly this case.
+
+The `<P>` generic parameter stands for the type of the parent. Thanks to `of` factory methods, classes can be used 
+inside or outside of a parent-chaining pattern.
+
+```
 public class TagNode<P> implements Node {  // P is the genreric type of the parent
 
     public final P __; // Parent for chaining
@@ -126,17 +144,19 @@ public class TagNode<P> implements Node {  // P is the genreric type of the pare
     }
     ...
 
-``` 
-The `<P>` generic parameter stands for the type of the parent. Thanks to `of` factory methods, this class can be used 
-inside or outside of a parent-chaining pattern.
+```
+ 
+### Appending Children
 
-To append children and attributes to nodes, method `TagNode#child(tagName)` creates a child instance, adds it to its children then return 
-the child. To make code more readable, short-cuts has `div()`, `table()`, `tr()`, ... has been implemented.
+To let interface being navigable, modifier methods need to return accurate types : 
+* If a method sets or appends a leaf object (like a `String` or a `Date`) then ìt must return `this`. 
+* If a method adds a navigable node as `TagNode`, it must return child type with proper generic type.
 
-Note that `child` method returns a `TagNode<TagNode<P>>` and not a `TagNote<T>` as it returns the generic type of the child,
-not of itself.
+To append children and attributes to nodes, method `TagNode#child(tagName)` creates a child instance, 
+adds it to its children then returns the child. 
+`child` method returns a `TagNode<TagNode<P>>`, `TagNote<T>` being the type of current object.
 
-```Java
+```
 public TagNode<TagNode<P>> child(String name) {
         TagNode<TagNode<P>> child = TagNode.ofParent(this, name);
         this.children.add(child);
@@ -159,8 +179,10 @@ public TagNode<TagNode<P>> child(String name) {
    ...
 ```
 
-You can use Java functional consumer to delegate par of the tree handling by a method. `TagLib` implements a 
-`apply(Consumer<TagNode)` method for delegation.
+### Improve the Design
+
+You can use Java functional consumers to delegate part of the tree handling by methods. `TagLib` implements a 
+`apply(Consumer<TagNode>)` method for delegation.
 
 ```Java
 public TagNode<P> apply(Consumer<TagNode<?>> consumer) {
@@ -169,7 +191,7 @@ public TagNode<P> apply(Consumer<TagNode<?>> consumer) {
 }
 ```
 
-So client can handle entire part of the tree in dedicated methods or implement a visitor like pattern.
+This simple `apply` method let handling entire part of the tree in dedicated methods or implementing a visitor.
 
 
 ``` Java
@@ -210,15 +232,12 @@ public class MainVariant {
 
 ## Conclusion
 
-*Parent-Chaining* pattern is a solution to impove greatly code readability at a cost of very few extra coding / complexity.
+*Parent-Chaining* pattern is a solution to improve greatly code readability at a cost of very few extra coding / complexity.
 
 We can imagine XML handling solution based on this pattern to manipulate DOM in a cleaner way or generate better code 
 than Jaxb does.
 
 Also, version 0.9 of [Jeka](https://dev.jeka) will rely heavily on this pattern to configure project builds.
-
-
-
 
 
 > Icons made by <a href="https://www.flaticon.com/authors/eucalyp" title="Eucalyp">Eucalyp</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a>
