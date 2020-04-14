@@ -14,7 +14,7 @@ The purpose of this article is to introduce the *Parent-Chaining* pattern. This 
 achieve tree instantiation/modification with *tree-looking-like* code. 
 
 The example shown here is implemented in Java, but it can apply to any statically typed language featuring generics. 
-Complete code is available [here](src/com/github/djeang/parentchaining).
+Full code is available [here](src/com/github/djeang/parentchaining).
 
 ## Example
 
