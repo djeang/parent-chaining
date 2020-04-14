@@ -214,6 +214,6 @@ public class MainVariant {
 We can imagine XML handling solution based on this pattern to manipulate DOM in a cleaner way or generate better code 
 than Jaxb does.
 
-Also version 0.9 of [Jeka](https://dev.jeka) will rely heavily on this pattern.
+Also version 0.9 of [Jeka](https://dev.jeka) will rely heavily on this pattern to configure project builds.
 
 ```
