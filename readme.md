@@ -90,7 +90,7 @@ public class Html {
 ### Instantiating Child Classes
 
 For illustration purpose, `Head` and `Body` does not follow strictly the same design. `<head>` has its own type 
-enforcing a restricted set of child tags (<title> or <meta>), while `<body>` and its children use a generic `TagNode` type.
+enforcing a restricted set of child tags (`<title>` or `<meta>`), while `<body>` and its children use a generic `TagNode` type.
  
 The parent must be set once for all at instantiation time to benefit from `final` modifier. 
  
