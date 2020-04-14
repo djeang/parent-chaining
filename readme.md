@@ -4,9 +4,10 @@
 
 [Method chaining pattern](https://martinfowler.com/dslCatalog/methodChaining.html) has been around in 
 for years in Java and others language. It is widely used to implements builder pattern or [fluent interface](https://martinfowler.com/bliki/FluentInterface.html)
-but never, as far as I know, to instantiate or modify a complete tree structure. The issue is that the chain termination 
-determines the instance on which the next modifier method will apply on. Navigation methods would be necessary to go deeper 
-in the tree structure (that's what is doing some fluent interface implementations) and to go higher. 
+but never, as far as I know, to instantiate or modify a complete tree structure.
+
+The issue is that the chain termination determines the instance on which the next modifier method will apply on.
+Navigation methods would be necessary to go deeper or higher in the tree structure. 
 
 The purpose of this article is to introduce the *parent chaining* pattern that will complete the *method chaining* to 
 achieve tree instantiation/modification with *tree-looking-like* code. The examples shown here are implemented in Java 
