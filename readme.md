@@ -94,7 +94,7 @@ enforcing a restricted set of child tags (<title> or <meta>), while `<body>` and
  
 The parent must be set once for all at instantiation time to benefit from `final` modifier. 
  
-##### Child Classes Having a Unique Parent Type
+#### Child Classes Having a Unique Parent Type
 
 `Head` parent is always `Html` so we can declare the parent with a non-generic type as shown below.
  
@@ -112,7 +112,7 @@ public class Head {
     }
 ```
 
-##### Child Classes Having Multiple Parent Types
+#### Child Classes Having Multiple Parent Types
 
 In contrast, `TagNode` can have both `TagName`or `Html` as parent : we need generics to handle properly this case.
 
