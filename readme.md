@@ -1,6 +1,4 @@
-<img src="connection.png"/>
-
-# Parent-Chaining Pattern
+# Parent-Chaining Pattern     <img src="connection.png"/>
 
 ## Abstract
 
