@@ -1,4 +1,4 @@
-<div>Icons made by <a href="https://www.flaticon.com/authors/eucalyp" title="Eucalyp">Eucalyp</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
+<img src="connection.svg"/>
 
 # Parent-Chaining Pattern
 
@@ -217,7 +217,7 @@ public class MainVariant {
 We can imagine XML handling solution based on this pattern to manipulate DOM in a cleaner way or generate better code 
 than Jaxb does.
 
-Also version 0.9 of [Jeka](https://dev.jeka) will rely heavily on this pattern to configure project builds.
+Also, version 0.9 of [Jeka](https://dev.jeka) will rely heavily on this pattern to configure project builds.
 
 
 
