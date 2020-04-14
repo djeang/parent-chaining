@@ -18,7 +18,7 @@ Complete code is available [here](src/com/github/djeang/parentchaining).
 
 ## Example
 
-For developers, the most familiar tree structure is probably the HTML DOM. So let's see how to create 
+For developers, the most familiar tree structure is probably HTML DOM. So let's see how to create 
 a HTML DOM instance with an API based on *Parent-Chaining* pattern.
 
 ```
