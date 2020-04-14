@@ -159,4 +159,52 @@ public TagNode<TagNode<P>> child(String name) {
    ...
 ```
 
+You can use Java functional consumer to delegate par of the tree handling by a method. `TagLib` implements a 
+`apply(Consumer<TagNode)` method for delegation.
 
+```
+public TagNode<P> apply(Consumer<TagNode<?>> consumer) {
+    consumer.accept(this);
+    return this;
+}
+```
+
+So client can handle entire part of the tree in dedicated methods.
+
+
+``` Java
+public class MainVariant {
+
+    public static void main(String[] args) {
+        Html html = new Html()
+            .head()
+                .title("Title of my document")
+                .meta().charset("UTF-8").__.__
+            .body()
+                .table().attr("style", "width:100%")
+                    .tr()
+                        .th().text("Firstname").__
+                        .th().text("Lastname").__
+                        .th().text("Age").__.__
+                    .apply(addRow("Jill", "Smith", "50"))
+                    .apply(addRow("Eve", "Jackson", "94")).__
+                .apply(MainVariant::addEnding).__;
+        System.out.println(html);
+    }
+
+    static void addEnding(TagNode tagNode) {
+        tagNode
+            .div().attr("style", "bold")
+                .text("This is the end of this page.");
+    }
+
+    static Consumer<TagNode<?>> addRow(String firstname, String lastname, String age) {
+        return tagNode -> tagNode
+                .tr()
+                    .td().text(firstname).__
+                    .td().text(lastname).__
+                    .td().text(age);
+    }
+}
+
+```
