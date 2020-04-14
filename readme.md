@@ -2,7 +2,7 @@
 
 ## Abstract
 
-[Method chaining](https://martinfowler.com/dslCatalog/methodChaining.html) pattern has been around in 
+[Method chaining](https://martinfowler.com/dslCatalog/methodChaining.html) pattern has been around 
 for years in Java and others language. It is widely used to implement [builder](https://martinfowler.com/dslCatalog/constructionBuilder.html) 
 or [fluent interface](https://martinfowler.com/bliki/FluentInterface.html)
 but never, as far as I know, to instantiate or modify a complete tree structure.
@@ -10,18 +10,18 @@ but never, as far as I know, to instantiate or modify a complete tree structure.
 The issue is that the chain termination determines the instance on which the next modifier method will apply on.
 For flat structures it is ok but for trees, navigation methods are necessary to go deeper or higher in the structure. 
 
-The purpose of this article is to introduce the *Parent-Chaining* pattern that will complete *method chaining* to 
+The purpose of this article is to introduce the *Parent-Chaining* pattern. This pattern completes *method chaining* to 
 achieve tree instantiation/modification with *tree-looking-like* code. 
 
-The examples shown here are implemented in Java, but it can apply to any statically typed languages featuring generics. 
+The examples shown here are implemented in Java, but it can apply to any statically typed language featuring generics. 
 This repository hosts source code of below examples.
 
 ## Example
 
-Probably, the most popular tree structure for programers is the HTML DOM. So let's see how to create 
+For developers, the most familiar tree structure is probably the HTML DOM. So let's see how to create 
 a HTML DOM instance with an API based on *Parent-Chaining* pattern.
 
-```Java
+```
 Html html = new Html()
     .head()
         .title("Title of my document")
