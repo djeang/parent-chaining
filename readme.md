@@ -237,7 +237,7 @@ public class MainVariant {
 
 ## Conclusion
 
-*Parent-Chaining* pattern is a solution to improve greatly code readability at a cost of very few extra coding/complexity.
+*Parent-Chaining* pattern is a solution to greatly improve code readability at a cost of very few extra coding/complexity.
 
 We can imagine XML handling solution based on this pattern to manipulate DOM in a cleaner way or generate better code 
 than Jaxb does.
