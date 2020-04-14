@@ -1,4 +1,4 @@
-<img src="connection.svg"/>
+<img src="connection.png"/>
 
 # Parent-Chaining Pattern
 
