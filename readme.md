@@ -14,7 +14,7 @@ The purpose of this article is to introduce the *Parent-Chaining* pattern. This 
 achieve tree instantiation/modification with *tree-looking-like* code. 
 
 The examples shown here are implemented in Java, but it can apply to any statically typed language featuring generics. 
-This repository hosts source code of below examples.
+This repository hosts [source code](src/com/github/djeang/parentchaining) of below examples.
 
 ## Example
 
@@ -169,7 +169,7 @@ public TagNode<P> apply(Consumer<TagNode<?>> consumer) {
 }
 ```
 
-So client can handle entire part of the tree in dedicated methods.
+So client can handle entire part of the tree in dedicated methods or implement a visitor like pattern.
 
 
 ``` Java
