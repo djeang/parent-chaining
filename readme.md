@@ -178,12 +178,11 @@ then returns the child typed as `TagNode<TagNode<P>>`, `TagNote<T>` being the ty
    ...
 ```
 
-### Improving Design
+### Make it Dynamic
 
-Creating an entire tree in a single statement is not always desirable. Fortunately, Java functional consumers 
-are a great solution to isolate parts of tree handling.
+To create dynamic content in a single chained statement, we need the help of Java functional consumers.
 
-Let's see how we `TagNode#apply(Consumer<TagNode>)` solve this issue :
+Let's see, how `TagNode#apply(Consumer<TagNode>)` solves this issue :
 
 ```
 public class TagNode<P> implements Node {
@@ -213,36 +212,37 @@ public class MainVariant {
                         .th().text("Firstname").__
                         .th().text("Lastname").__
                         .th().text("Age").__.__
-                    .apply(addRow("Jill", "Smith", "50"))
-                    .apply(addRow("Eve", "Jackson", "94")).__
-                .apply(MainVariant::addEnding).__;
+                    .apply(MainVariant::populateRows).__
+                .div().attr("style", "bold")
+                    .text("This is the end of this page.").__.__;
         System.out.println(html);
     }
 
-    static void addEnding(TagNode tagNode) {
-        tagNode
-            .div().attr("style", "bold")
-                .text("This is the end of this page.");
+    static void populateRows(TagNode table) { // Typically fetch from databasze
+        addRow(table, "Jill", "Smith", "50");
+        addRow(table, "Eve", "Jackson", "94");
     }
 
-    static Consumer<TagNode<?>> addRow(String firstname, String lastname, String age) {
-        return tagNode -> tagNode
-                .tr()
-                    .td().text(firstname).__
-                    .td().text(lastname).__
-                    .td().text(age);
+    private static void addRow(TagNode<?> table, String firstname, String lastname, String age) {
+        table
+            .tr()
+                .td().text(firstname).__
+                .td().text(lastname).__
+                .td().text(age);
     }
 }
 ```
+As you can see here, Html tree is designed as a template. The population of dynamic parts is delegated to simple 
+Java methods.
 
 ## Conclusion
 
 *Parent-Chaining* pattern is a solution to greatly improve code readability at a cost of very few extra coding/complexity.
 
-We can imagine XML handling solution based on this pattern to manipulate DOM in a cleaner way or generate better code 
-than Jaxb does.
+Potential applications are, among others, better DOM manipulation libraries, better generated code from XML/Json->Java tooling, 
+or simply cleaner configuration code.
 
-Also, version 0.9 of [Jeka](https://dev.jeka) relies heavily on this pattern to configure project builds.
+Note that version 0.9 of [Jeka](https://dev.jeka) relies heavily on this pattern to configure project builds.
 
 
 > Icons made by <a href="https://www.flaticon.com/authors/eucalyp" title="Eucalyp">Eucalyp</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a>

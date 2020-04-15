@@ -3,8 +3,6 @@ package com.github.djeang.parentchaining.client;
 import com.github.djeang.parentchaining.api.Html;
 import com.github.djeang.parentchaining.api.TagNode;
 
-import java.util.function.Consumer;
-
 public class MainVariant {
 
     public static void main(String[] args) {
@@ -18,23 +16,22 @@ public class MainVariant {
                         .th().text("Firstname").__
                         .th().text("Lastname").__
                         .th().text("Age").__.__
-                    .apply(addRow("Jill", "Smith", "50"))
-                    .apply(addRow("Eve", "Jackson", "94")).__
-                .apply(MainVariant::addEnding).__;
+                    .apply(MainVariant::populateRows).__
+                .div().attr("style", "bold")
+                    .text("This is the end of this page.").__.__;
         System.out.println(html);
     }
 
-    static void addEnding(TagNode tagNode) {
-        tagNode
-            .div().attr("style", "bold")
-                .text("This is the end of this page.");
+    static void populateRows(TagNode table) { // Typically fetch from databasze
+        addRow(table, "Jill", "Smith", "50");
+        addRow(table, "Eve", "Jackson", "94");
     }
 
-    static Consumer<TagNode<?>> addRow(String firstname, String lastname, String age) {
-        return tagNode -> tagNode
-                .tr()
-                    .td().text(firstname).__
-                    .td().text(lastname).__
-                    .td().text(age);
+    private static void addRow(TagNode<?> table, String firstname, String lastname, String age) {
+        table
+            .tr()
+                .td().text(firstname).__
+                .td().text(lastname).__
+                .td().text(age);
     }
 }
