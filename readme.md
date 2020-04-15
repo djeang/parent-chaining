@@ -180,9 +180,10 @@ then returns the child typed as `TagNode<TagNode<P>>`, `TagNote<T>` being the ty
 
 ### Make it Dynamic
 
-To create dynamic content in a single chained statement, we need the help of Java functional consumers.
+So far, we have only dealt with static content described "inline" the chained statement. 
+To include dynamic content, we need the help of Java functional consumers.
 
-Let's see, how `TagNode#apply(Consumer<TagNode>)` solves this issue :
+Just add such a `TagNode#apply(Consumer<TagNode>)` method taking a consumer to itself as a parameter :
 
 ```
 public class TagNode<P> implements Node {
@@ -218,7 +219,7 @@ public class MainVariant {
         System.out.println(html);
     }
 
-    static void populateRows(TagNode table) { // Typically fetch from databasze
+    static void populateRows(TagNode table) { // Typically fetched from a database
         addRow(table, "Jill", "Smith", "50");
         addRow(table, "Eve", "Jackson", "94");
     }
