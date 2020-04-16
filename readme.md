@@ -243,7 +243,9 @@ Java methods.
 Potential applications are, among others, better DOM manipulation libraries, better generated code from XML/Json->Java tooling, 
 or simply cleaner configuration code.
 
-Note that version 0.9 of [Jeka](https://dev.jeka) relies heavily on this pattern to configure project builds.
+These projects are using *Parent-Chaining* pattern intensively :
+* [Jeka](https://dev.jeka) version 0.9 : a 100% Java build tool.
+* [vincer-dom](https://github.com/djeang/vincer-dom) : a DOM manipulation library
 
 
 > Icons made by <a href="https://www.flaticon.com/authors/eucalyp" title="Eucalyp">Eucalyp</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a>
