@@ -19,7 +19,7 @@ Full working code is available [here](src/com/github/djeang/parentchaining).
 ## Example
 
 For developers, the most familiar tree structure is probably HTML DOM. So let's see how to create 
-a HTML DOM instance with an API based on *Parent-Chaining* pattern.
+an HTML DOM instance with an API based on *Parent-Chaining* pattern.
 
 ```
 Html html = new Html()
@@ -89,7 +89,7 @@ public class Html {
 
 ### Instantiating Child Classes
 
-For illustration purpose, `Head` and `Body` does not follow strictly the same design. `<head>` has its own type 
+For illustration purpose, `Head` and `Body` do not follow strictly the same design. `<head>` has its own type 
 enforcing a restricted set of child tags (`<title>` or `<meta>`), while `<body>` and its children use a generic `TagNode` type.
  
 The parent must be set once for all at instantiation time to benefit from `final` modifier. 
@@ -114,7 +114,7 @@ public class Head {
 
 #### Child Classes Having Multiple Parent Types
 
-In contrast, `TagNode` can have both `TagName`or `Html` as parent : we need generics to handle properly this case.
+In contrast, `TagNode` can have both `TagName`or `Html` as parent : we need generics properly to handle this case.
 
 The `<P>` generic parameter stands for the type of the parent. Thanks to `of` factory methods, classes can be used 
 inside or outside of a parent-chaining pattern.
@@ -150,7 +150,7 @@ public class TagNode<P> implements Node {  // P is the genreric type of the pare
 
 To let interface being navigable, setter/adder methods must return accurate types : 
 * If a method sets or appends a leaf object (like a `String` or a `Date`) then ìt must return `this`. 
-* If a method adds a navigable node as `TagNode`, it must return properly generified child type .
+* If a method adds a navigable node as `TagNode`, it must return ther proper generified child type .
 
 For example, to append children, `TagNode#child(tagName)` creates a child instance, adds it to its children 
 then returns the child typed as `TagNode<TagNode<P>>`, `TagNote<T>` being the type of current object.
@@ -233,12 +233,12 @@ public class MainVariant {
     }
 }
 ```
-As you can see here, Html tree is designed as a template. The population of dynamic parts is delegated to simple 
+As you can see here, the Html tree is designed as a template. The addition of dynamic parts is delegated to simple 
 Java methods.
 
 ## Conclusion
 
-*Parent-Chaining* pattern is a solution to greatly improve code readability at a cost of very few extra coding/complexity.
+*Parent-Chaining* pattern is a solution to greatly improve code readability, at the cost of a few extra coding/complexity.
 
 Potential applications are, among others, better DOM manipulation libraries, better generated code from XML/Json->Java tooling, 
 or simply cleaner configuration code.
