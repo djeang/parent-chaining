@@ -244,7 +244,7 @@ Potential applications are, among others, better DOM manipulation libraries, bet
 or simply cleaner configuration code.
 
 These projects are using *Parent-Chaining* pattern intensively :
-* [Jeka](https://dev.jeka) version 0.9 : a 100% Java build tool.
+* [Jeka](https://jeka.dev) version 0.9 : a 100% Java build tool.
 * [vincer-dom](https://github.com/djeang/vincer-dom) : a DOM manipulation library
 
 
