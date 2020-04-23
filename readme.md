@@ -3,7 +3,7 @@
 ## Abstract
 
 [Method chaining](https://martinfowler.com/dslCatalog/methodChaining.html) pattern has been around 
-for years in Java and other language. It is widely used to implement [builder](https://martinfowler.com/dslCatalog/constructionBuilder.html) 
+for years in Java and other languages. It is widely used to implement [builder](https://martinfowler.com/dslCatalog/constructionBuilder.html) 
 or [fluent interface](https://martinfowler.com/bliki/FluentInterface.html)
 but not, as far as I know, to instantiate or modify a complete tree structure.
 
