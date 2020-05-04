@@ -13,7 +13,7 @@ For flat structures it is ok but for trees, navigation methods are necessary to 
 The purpose of this article is to introduce the *Parent-Chaining* pattern. This pattern completes *method chaining* to 
 achieve tree instantiation/modification with *tree-looking-like* code. 
 
-The example shown here is implemented in Java, but it can apply to any statically typed language featuring generics. 
+The example shown here is implemented in Java, but it can apply to any statically typed language featuring generics, and dynamically typed language as well. 
 Full working code is available [here](src/com/github/djeang/parentchaining).
 
 ## Example
